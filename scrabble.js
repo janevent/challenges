@@ -63,7 +63,6 @@ function findHighestMatch(words, tiles){
         maxPossibleScores.push([word, score])
     }
     maxPossibleScores.sort( (a,b) => b[1] - a[1])
-    console.log(maxPossibleScores)
 
     let maxScore = 0
     const dictTiles = {}
@@ -73,15 +72,13 @@ function findHighestMatch(words, tiles){
         dictTiles[capLetter]++
     }
 
-    console.log('dictTiles', dictTiles)
-
     for(const [word, score] of maxPossibleScores){
 
         if(maxScore > score) break
         let currentScore = 0
         for(const letter of word){
             const capLetter = letter.toUpperCase()
-            console.log(capLetter, word)
+            
             if(capLetter in dictTiles && dictTiles[capLetter] > 0){
                 currentScore+=parseInt(letterValues[capLetter])
                 dictTiles[capLetter]--
